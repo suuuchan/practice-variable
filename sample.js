@@ -1,9 +1,19 @@
-const pas = (n)=>{
-  return Array(n).fill().reduce((a,b,i)=>{
-    if (i<1) return a;
-    const p = [0].concat(a[a.length-1],0);
-    return a.concat([p.map((v,w)=>v+p[w+1]).slice(0,-1)]);
-  },[[1]]).slice(0,n);
+const createArr = (sum) => {
+  const arr = [];
+  for (let i=1; i<=6; i++) {
+    for (let j=1; j<=6; j++) {
+      for (let k=1; k<=6; k++) {
+        if ((i + j + k) === sum) {
+          arr.push([i, j, k]);
+        }
+      }
+    }
+  }
+  return arr;
 };
 
-console.log(pas(10));
+
+console.log(createArr(6));
+
+
+console.log(createArr(10));
