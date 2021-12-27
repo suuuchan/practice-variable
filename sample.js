@@ -1,19 +1,16 @@
-const createArr = (sum) => {
-  const arr = [];
-  for (let i=1; i<=6; i++) {
-    for (let j=1; j<=6; j++) {
-      for (let k=1; k<=6; k++) {
-        if ((i + j + k) === sum) {
-          arr.push([i, j, k]);
-        }
+const generateBitList = (n) => {
+  let array = []
+  for (let i = 0; i < 1 << n; i++) {
+      let bit = i.toString(2)
+      while (bit.length < n) {
+          bit = '0' + bit
       }
-    }
+      array.push(bit)
   }
-  return arr;
-};
+  return array
+}
 
-
-console.log(createArr(6));
+console.log(generateBitList(3))
 
 
 console.log(createArr(10));
