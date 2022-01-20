@@ -6,8 +6,8 @@
           return;
       }
       const ctx = canvas.getContext('2d');
-      const tree = 5;
-      const treeHeight = 15;
+      const tree = 4;
+      const treeHeight = 12;
 
       function random() {
           return Math.floor(Math.random() * 2);
