@@ -1,40 +1,60 @@
-{
-  const clock = () => {
+// じゃんけんの手を入力してもらうプロンプト欄を生成
+let user_hand = prompt('じゃんけんの手をグー、チョキ、パーから選んでください。');
 
-    const d = new Date();
-  
+// じゃんけんの手をランダムに作成する関数を呼び出す
+let js_hand = getJShand();
 
-    let year = d.getFullYear();
+// ユーザの手とJavaScriptのじゃんけんの手を比べる関数を呼び出し、結果をjudgeに入れる
+let judge = winLose(user_hand, js_hand);
 
-    let month = d.getMonth() + 1;
+// 結果を表示する
+alert('あなたの選んだ手は' + user_hand + 'です。\nJavaScriptの選んだ手は' + js_hand + 'です。\n結果は' + judge + 'です。');
 
-    let date = d.getDate();
- 
-    let dayNum = d.getDay();
-    const weekday = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-    let day = weekday[dayNum];
- 
-    let hour = d.getHours();
+// ランダムでじゃんけんの手を作成する関数
+function getJShand(){
+  let js_hand_num = Math.floor( Math.random() * 3 );
+  let hand_name;
 
-    let min = d.getMinutes();
-  
-    let sec = d.getSeconds();
-  
-   
-    month = month < 10 ? "0" + month : month;
-    date = date < 10 ? "0" + date : date;
-    hour = hour < 10 ? "0" + hour : hour;
-    min = min < 10 ? "0" + min : min;
-    sec = sec < 10 ? "0" + sec : sec;
-  
-   
-    let today = `${year}.${month}.${date} ${day}`;
-    let time = `${hour}:${min}:${sec}`;
-  
- 
-    document.querySelector(".clock-date").innerText = today;
-    document.querySelector(".clock-time").innerText = time;
-  };
-  
-  
-  setInterval(clock, 1000);
+  if(js_hand_num == 0){
+    hand_name = "グー";
+  } else if(js_hand_num == 1){
+    hand_name = "チョキ";
+  } else if(js_hand_num == 2){
+    hand_name = "パー";
+  }
+
+  return hand_name;
+}
+
+// ユーザの手とJavaScriptのじゃんけんの手を比べる関数
+function winLose(user, js){
+  let winLoseStr;
+
+  if(user == "グー"){
+    if(js == "グー"){
+      winLoseStr = "あいこ";
+    } else if(js == "チョキ"){
+      winLoseStr = "勝ち";
+    } else if(js == "パー"){
+      winLoseStr = "負け";
+    }
+  } else if(user == "チョキ"){
+    if(js == "グー"){
+      winLoseStr = "負け";
+    } else if(js == "チョキ"){
+      winLoseStr = "あいこ";
+    } else if(js == "パー"){
+      winLoseStr = "勝ち";
+    }
+  } else if(user == "パー"){
+    if(js == "グー"){
+      winLoseStr = "勝ち";
+    } else if(js == "チョキ"){
+      winLoseStr = "負け";
+    } else if(js == "パー"){
+      winLoseStr = "あいこ";
+    }
+  }
+
+  return winLoseStr;
+}
